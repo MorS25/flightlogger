@@ -1,5 +1,21 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.navbar.navbar-fixed-top
+    div.navbar-inner
+      div.container
+        a(data-toggle='collapse', data-target='.nav-collapse').btn.btn-navbar
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a(href='#').brand #{brand}
+        ul.nav
+          - var obj = { 'home':'Home', 'about':'About' }
+            - each val, key in obj
+              - if (id == key)
+                li.active
+                  a(href='#{key}') #{val}
+              - else            
+                li
+                  a(href='#{key}') #{val}
+  div.container!= body

@@ -4,6 +4,8 @@
  */
 
 var express = require('express')
+  , jsdom = require('jsdom')
+  , request = require('request')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
@@ -24,11 +26,16 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+});
+
+app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/home', routes.home);
+app.get('/about', routes.about);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
