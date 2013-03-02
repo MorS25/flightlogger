@@ -1,7 +1,9 @@
 flightlogger
 ============
 
-initial stab at making a flight log application
+Initial stab at making a flight log application.
+
+The purpose is to provide an ability to quickly and easily provide the info needed to make reports to the FAA concerning UAV operations.
 
 ============
 ### Install
