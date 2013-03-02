@@ -19,7 +19,7 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.use(express.favicon());
   app.use(express.logger('dev'));
-  app.use(express.bodyParser());
+  app.use(express.bodyParser({uploadDir:'./upload'}));
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
@@ -37,6 +37,12 @@ app.get('/', routes.index);
 app.get('/home', routes.home);
 app.get('/about', routes.about);
 app.get('/upload', routes.upload);
+
+app.post('/upload', function(req, res) {
+    console.log(req.body);
+    console.log(req.files);
+    res.send(200);
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
